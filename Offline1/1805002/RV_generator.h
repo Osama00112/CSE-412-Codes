@@ -1,3 +1,6 @@
+#ifndef RV_H
+#define RV_H
+
 /* Define the constants. */
 #define MODLUS 2147483647
 #define MULT1 24112
@@ -54,3 +57,5 @@ void lcgrandst (long zset, int stream){ /* Set the current zrng for stream "stre
 long lcgrandgt (int stream) { /* Return the current zrng for stream "stream". */
     return zrng[stream];
 }
+
+#endif

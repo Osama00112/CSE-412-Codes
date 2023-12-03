@@ -17,6 +17,10 @@ void initialization_routine(){
     areaUnderB = 0;
     timeLastEvent = 0;
 
+    totalEvents = 0;
+    customerArrivalCount = 0;
+    customerDepartureCount = 0;
+
     nextArrivalTime = generateRandom(A);
     nextDepartTime = INF;
 }

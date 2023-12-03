@@ -8,7 +8,8 @@
 void arrival(){
     double delay;
     nextArrivalTime = simulTime + generateRandom(A);
-
+    customerArrivalCount++;
+    eventMSG(totalEvents, customerArrivalCount, ARRIVAL);
 
     if(serverStatus == IDLE){
         delay = 0;
@@ -30,6 +31,8 @@ void arrival(){
 
 void departure(){
     double delay;
+    customerDepartureCount++;
+    eventMSG(totalEvents, customerDepartureCount, DEPARTURE);
 
     if(currentQueueLength == 0){
         serverStatus = IDLE;
