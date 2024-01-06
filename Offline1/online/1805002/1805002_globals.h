@@ -19,7 +19,12 @@ using namespace std;
 ifstream inputFile;
 ofstream eventOrderFile, resultFile;
 
-double A, S, N;
+double servers, A, S, N;
+// array of server status
+
+vector<int> serverStatuses;
+
+
 double simulTime;
 double timeLastEvent;
 double delaySum;
@@ -27,6 +32,9 @@ double areaUnderQ;
 double areaUnderB;
 double nextArrivalTime;
 double nextDepartTime;
+
+vector<double> nextDepartTimes;
+int serverDepartureIndex;
 
 int serverStatus;
 int customerDelayedCount;
@@ -51,13 +59,13 @@ void customerDelayedMSG(int count){
     eventOrderFile << "\n---------No. of customers delayed: " << count << "--------\n" << endl;
 }
 
-void eventMSG(int totalEvents, int count, int type){
+void eventMSG(int totalEvents, int count, int type, int index){
     if(type == ARRIVAL){
         eventOrderFile << 
                 totalEvents << ". Next event: Customer " << count << " Arrival" << endl;
     }else if(type == DEPARTURE){
         eventOrderFile << 
-                totalEvents << ". Next event: Customer " << count << " Departure" << endl;
+                totalEvents << ". Next event: Customer " << count << " Departure from server " << index+1 << endl;
     }
 }
 

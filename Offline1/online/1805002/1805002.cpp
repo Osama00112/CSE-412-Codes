@@ -5,11 +5,11 @@
 #include "1805002_timing.h"
 #include "1805002_events.h"
 
-#define FILE_TYPE 3
+#define FILE_TYPE 2
 
-string file1 = "IOs/io1/in.txt";
-string file2 = "IOs/io2/in.txt";
-string file3 = "IOs/io3/in.txt";
+string file1 = "IOs - OnlineA/io1/in.txt";
+string file2 = "IOs - OnlineA/io2/in.txt";
+string file3 = "IOs - OnlineA/io3/in.txt";
 
 
 using namespace std;
@@ -19,7 +19,10 @@ void updateParams(){
     timeLastEvent = simulTime;
 
     areaUnderQ += currentQueueLength * interEventTime;
-    areaUnderB += serverStatus * interEventTime;
+    
+    for (int i =0; i<servers; i++){
+        areaUnderB += serverStatuses[i] * interEventTime;
+    }
 }
 
 int main(){
@@ -38,7 +41,7 @@ int main(){
     eventOrderFile.open("event_orders.txt");
     resultFile.open("results.txt");
 
-    inputFile >> A >> S >> N;
+    inputFile >> servers >> A >> S >> N;
     //eventOrderFile << "A: " << A << " S: " << S << " N: " << N << endl;
 
     initialization_routine();
